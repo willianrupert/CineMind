@@ -1,6 +1,7 @@
 // src/components/auth/Register.jsx
 
 import React, { useState } from "react";
+// Usamos a lógica de auth do *novo* projeto (baseado em Firebase)
 import { registerWithEmail } from "../../config/firebase";
 
 export default function Register({ onToggleView }) {
@@ -21,10 +22,14 @@ export default function Register({ onToggleView }) {
     try {
       await registerWithEmail(email, password);
       // O App.jsx vai detectar o login e mudar de tela
+      // Opcionalmente, podemos forçar a visualização de login aqui:
+      // onToggleView("login");
     } catch (err) {
       console.error(err);
       if (err.code === "auth/email-already-in-use") {
         setError("Este email já está em uso.");
+      } else if (err.code === "auth/weak-password") {
+        setError("A senha deve ter pelo menos 6 caracteres.");
       } else {
         setError("Ocorreu um erro ao criar a conta.");
       }
@@ -32,81 +37,54 @@ export default function Register({ onToggleView }) {
     setLoading(false);
   };
 
+  // Aplicamos o *estilo* do projeto *antigo* (TSX)
   return (
-    <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-center text-white">Criar Conta</h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 mt-1 text-white bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Senha
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 mt-1 text-white bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="confirmPassword"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Confirmar Senha
-          </label>
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            required
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full px-3 py-2 mt-1 text-white bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
+    <div className="bg-[#D93F6E] p-6 sm:p-8 rounded-2xl shadow-2xl animate-fade-in w-full max-w-sm">
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-white">CADASTRO</h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <input
+          type="email"
+          placeholder="Email..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-4 py-3 rounded-lg bg-[#381127] text-white placeholder-gray-400 border border-transparent focus:outline-none focus:ring-2 focus:ring-[#F2B705]"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Senha..."
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full px-4 py-3 rounded-lg bg-[#381127] text-white placeholder-gray-400 border border-transparent focus:outline-none focus:ring-2 focus:ring-[#F2B705]"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirmar senha..."
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="w-full px-4 py-3 rounded-lg bg-[#381127] text-white placeholder-gray-400 border border-transparent focus:outline-none focus:ring-2 focus:ring-[#F2B705]"
+          required
+        />
 
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-sm text-yellow-300 text-center">{error}</p>}
 
-        <div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-2 px-4 font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-          >
-            {loading ? "Criando..." : "Criar Conta"}
-          </button>
-        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-[#F2B705] text-[#381127] font-bold py-3 rounded-lg hover:bg-yellow-500 transition-colors !mt-8 disabled:opacity-50 disabled:cursor-wait"
+        >
+          {loading ? "Cadastrando..." : "Cadastrar"}
+        </button>
       </form>
-      <p className="text-sm text-center text-gray-400">
+      <p className="text-center text-sm text-white mt-6">
         Já tem uma conta?{" "}
         <button
           onClick={() => onToggleView("login")}
-          className="font-medium text-blue-400 hover:text-blue-300"
+          className="font-bold text-[#2EC4D9] hover:underline disabled:text-gray-400"
+          disabled={loading}
         >
-          Faça login
+          Login
         </button>
       </p>
     </div>
