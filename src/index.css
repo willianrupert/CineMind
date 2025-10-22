@@ -1,11 +1,43 @@
-/* Adicionamos as animações e fontes do projeto antigo */
+/* Adicionamos as fontes e animações do projeto antigo */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@400;600;700&display=swap');
 
-/*@tailwind base;
+/* --- Restaure estas linhas --- */
+@tailwind base;
 @tailwind components;
-@tailwind utilities;*/
+@tailwind utilities;
+/* --- Fim da restauração --- */
 
 body {
-  background-color: lime !important; /* Verde limão bem chamativo */
-  color: red !important;
+  font-family: 'Poppins', sans-serif;
+  background-color: #100812;
 }
+
+.font-serif {
+  font-family: 'Lora', serif;
+}
+
+/* Animações necessárias */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+}
+
+@keyframes animate-neural-net {
+  from { background-position: 0 0; }
+  to { background-position: -240px -240px; }
+}
+.animate-neural-net {
+  animation: animate-neural-net 30s linear infinite;
+}
+
