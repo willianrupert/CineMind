@@ -1,11 +1,8 @@
-/* Adicionamos as fontes e animações do projeto antigo */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@400;600;700&display=swap');
 
-/* --- Restaure estas linhas --- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* --- Fim da restauração --- */
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -16,7 +13,7 @@ body {
   font-family: 'Lora', serif;
 }
 
-/* Animações necessárias */
+/* --- Animações --- */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -40,4 +37,3 @@ body {
 .animate-neural-net {
   animation: animate-neural-net 30s linear infinite;
 }
-
