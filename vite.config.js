@@ -1,7 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/postcss"; // <-- Importa o plugin Tailwind
-import autoprefixer from "autoprefixer";       // <-- Importa o Autoprefixer
+// Remova as importações de tailwindcss e autoprefixer daqui, se as adicionou
+// import tailwindcss from "@tailwindcss/postcss";
+// import autoprefixer from "autoprefixer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,14 +15,14 @@ export default defineConfig({
       clientPort: 443,
     },
   },
-  // --- NOVA CONFIGURAÇÃO CSS ---
-  css: {
-    postcss: {
-      plugins: [
-        tailwindcss, // <-- Usa o plugin Tailwind aqui
-        autoprefixer, // <-- Usa o Autoprefixer aqui
-      ],
-    },
-  },
-  // --- FIM DA NOVA CONFIGURAÇÃO ---
+  // Remova ou comente esta seção inteira:
+  // css: {
+  //   postcss: {
+  //     plugins: [
+  //       tailwindcss,
+  //       autoprefixer,
+  //     ],
+  //   },
+  // },
 });
+
