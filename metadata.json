@@ -1,0 +1,5 @@
+{
+  "name": "CineMind",
+  "description": "A movie recommendation application powered by AI. Users can sign in using their Google account or email/password to get personalized movie suggestions based on their prompts.",
+  "requestFramePermissions": []
+}
