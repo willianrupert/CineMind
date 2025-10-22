@@ -1,5 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/postcss"; // <-- Importa o plugin Tailwind
+import autoprefixer from "autoprefixer";       // <-- Importa o Autoprefixer
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,15 +9,19 @@ export default defineConfig({
   server: {
     port: 3000,
     host: "0.0.0.0",
-
-    // --- CORREÇÃO 1 (A que o erro pediu) ---
-    // Diz ao Vite para "confiar" em qualquer host que termine com .replit.dev
     allowedHosts: [".replit.dev"],
-
-    // --- CORREÇÃO 2 (A que já tínhamos) ---
-    // Diz ao Vite como se comunicar com a janela de Preview
     hmr: {
       clientPort: 443,
     },
   },
+  // --- NOVA CONFIGURAÇÃO CSS ---
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss, // <-- Usa o plugin Tailwind aqui
+        autoprefixer, // <-- Usa o Autoprefixer aqui
+      ],
+    },
+  },
+  // --- FIM DA NOVA CONFIGURAÇÃO ---
 });
