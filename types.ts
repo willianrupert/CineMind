@@ -20,3 +20,14 @@ export interface Question {
   third_alternative: string;
   third_alternative_value: number;
 }
+
+export interface UserPreferences {
+  scores: {
+    openness: number;
+    conscientiousness: number;
+    extroversion: number;
+    agreeableness: number;
+    neuroticism: number;
+  };
+  favorite_genres: string[];
+}
