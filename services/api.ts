@@ -2,7 +2,7 @@ import { getAuth } from 'firebase/auth';
 import { Movie, UserPreferences } from '../types'; // Importa UserPreferences
 
 // Define a URL base da API (seu backend no Render)
-const BASE_URL = '[https://cinemind-4s3o.onrender.com](https://cinemind-4s3o.onrender.com)'; // Ou sua URL específica se for diferente
+const BASE_URL = 'https://cinemind-4s3o.onrender.com'; // <- Esta URL está 100% correta?'; // Ou sua URL específica se for diferente
 const API_URL_RECS = `${BASE_URL}/gerar-recomendacoes`;
 const API_URL_PREFS = `${BASE_URL}/preferences`; // Novo endpoint
 
