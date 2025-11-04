@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import test from "../../public/favicon.svg";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,6 +15,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const goToSignupPage = () => navigate("/signup");
+
   // Lógica de submissão
   const submitLoginData = (event: React.FormEvent) => {
     event.preventDefault(); // impede o recarregamento padrão do form
@@ -100,22 +101,33 @@ export default function Login() {
         <div className="grid grid-cols-3 grid-rows-4">
           <input
             type="submit"
-            className="col-start-2 row-start-2 row-span-2 bg-cinemind-yellow rounded-lg cursor-pointer text-cinemind-dark text-3xl font-cinemind-sans font-semibold"
+            className="
+              col-start-2 row-start-2 row-span-2 
+              bg-cinemind-yellow rounded-lg cursor-pointer 
+              text-cinemind-dark text-3xl font-cinemind-sans font-semibold
+            "
             value="Entrar"
           />
         </div>
 
         <div className="grid grid-cols-3 place-content-center-safe place-items-center-safe">
-          <p className="col-span-2 justify-self-start text-cinemind-white text-2xl font-cinemind-serif italic underline">
+          <p
+            className="
+              col-span-2 justify-self-start 
+              text-cinemind-white text-2xl font-cinemind-serif italic underline
+            "
+          >
             Não tem uma conta?
           </p>
+
           <button
-            className="bg-cinemind-blue rounded-lg cursor-pointer px-4 py-1"
+            className="
+              bg-cinemind-blue rounded-lg cursor-pointer px-4 py-1
+              text-cinemind-dark text-xl font-cinemind-sans font-semibold
+            "
             onClick={goToSignupPage}
           >
-            <p className="text-cinemind-dark text-xl font-cinemind-sans font-semibold">
-              Cadastrar
-            </p>
+            Cadastrar
           </button>
         </div>
       </form>
