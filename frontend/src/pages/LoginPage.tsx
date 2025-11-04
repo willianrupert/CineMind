@@ -1,17 +1,23 @@
 import { useState } from "react";
-import test from "../../public/favicon.svg";
 import { useNavigate } from "react-router-dom";
 import {
   isValidUsername,
   isValidEmail,
   isValidPassword
 } from "../utils/validators";
+import EyeIcon from "../assets/EyeIcon";
+import UserCredentialsIcon from "../assets/UserCredentialsIcon";
+import ClosedLockIcon from "../assets/ClosedLockIcon";
+import SlashedEyeIcon from "../assets/SlashedEyeIcon";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const [error, setError] = useState(""); // estado que controla mensagens de erro
+
+  const togglePasswordVisibility = () =>
+    setPasswordVisibility(!isPasswordVisible);
 
   const navigate = useNavigate();
   const goToSignupPage = () => navigate("/signup");
@@ -58,14 +64,12 @@ export default function Login() {
           LOGIN
         </p>
 
-        <div className="flex p-4 gap-4 bg-cinemind-light rounded-lg">
-          <img
-            src={test}
-            alt="File"
-          />
+        <div className="flex p-4 gap-4 bg-cinemind-light rounded-lg place-items-center-safe">
+          <UserCredentialsIcon className="size-12 fill-none stroke-cinemind-white stroke-1" />
+
           <input
             type="text"
-            className="flex grow outline-none text-cinemind-white text-2xl font-cinemind-serif italic"
+            className={`flex grow outline-none text-cinemind-white text-2xl font-cinemind-serif ${!username ? "italic" : ""}`}
             placeholder="Nome de usuário ou email..."
             value={username}
             onChange={event => {
@@ -74,35 +78,37 @@ export default function Login() {
           />
         </div>
 
-        <div className="flex p-4 gap-4 bg-cinemind-light rounded-lg">
-          <img
-            src={test}
-            alt="File"
-          />
+        <div className="flex p-4 gap-4 bg-cinemind-light rounded-lg place-items-center-safe">
+          <ClosedLockIcon className="size-12 fill-none stroke-cinemind-white stroke-1" />
+
           <input
             type={isPasswordVisible ? "text" : "password"}
-            className="flex grow outline-none text-cinemind-white text-2xl font-cinemind-serif italic"
+            className={`flex grow outline-none text-cinemind-white text-2xl font-cinemind-serif ${!password ? "italic" : ""}`}
             placeholder="Senha..."
             value={password}
             onChange={event => {
               setPassword(event.currentTarget.value);
             }}
           />
-          <img
-            src={test}
-            alt="File"
-            onClick={_ => {
-              setPasswordVisibility(!isPasswordVisible);
-            }}
-            className="cursor-pointer"
-          />
+
+          {isPasswordVisible ? (
+            <EyeIcon
+              className="size-12 fill-none stroke-cinemind-white stroke-1 cursor-pointer"
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <SlashedEyeIcon
+              className="size-12 fill-none stroke-cinemind-white stroke-1 cursor-pointer"
+              onClick={togglePasswordVisibility}
+            />
+          )}
         </div>
 
         <div className="grid grid-cols-3 grid-rows-4">
           <input
             type="submit"
             className="
-              col-start-2 row-start-2 row-span-2 
+              col-start-2 row-start-2 row-span-2
               bg-cinemind-yellow rounded-lg cursor-pointer 
               text-cinemind-dark text-3xl font-cinemind-sans font-semibold
             "
