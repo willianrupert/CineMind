@@ -104,11 +104,20 @@ export default function Login() {
           )}
         </div>
 
-        <div className="grid grid-cols-3 grid-rows-4">
+        <div className="grid grid-cols-3 grid-rows-2">
+          <p
+            className="
+              flex grow col-span-3 place-self-center-safe
+              text-cinemind-dark text-lg font-cinemind-serif font-semibold
+            "
+          >
+            {error}
+          </p>
+
           <input
             type="submit"
             className="
-              col-start-2 row-start-2 row-span-2
+              col-start-2 row-start-2
               bg-cinemind-yellow rounded-lg cursor-pointer 
               text-cinemind-dark text-3xl font-cinemind-sans font-semibold
             "
