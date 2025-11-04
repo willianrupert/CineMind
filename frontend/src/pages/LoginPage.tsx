@@ -9,6 +9,7 @@ import EyeIcon from "../assets/EyeIcon";
 import UserCredentialsIcon from "../assets/UserCredentialsIcon";
 import ClosedLockIcon from "../assets/ClosedLockIcon";
 import SlashedEyeIcon from "../assets/SlashedEyeIcon";
+import InputBox from "../components/InputBox";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -44,6 +45,8 @@ export default function Login() {
     }
   };
 
+  const baseIconProperties = "size-12 fill-none stroke-cinemind-white stroke-1";
+
   return (
     <div
       className="
@@ -64,45 +67,44 @@ export default function Login() {
           LOGIN
         </p>
 
-        <div className="flex p-4 gap-4 bg-cinemind-light rounded-lg place-items-center-safe">
-          <UserCredentialsIcon className="size-12 fill-none stroke-cinemind-white stroke-1" />
+        <InputBox
+          type="text"
+          className="
+            flex p-4 gap-4 place-items-center-safe
+            bg-cinemind-light rounded-lg
+            text-cinemind-white text-2xl font-cinemind-serif
+          "
+          placeholder="Nome de usuário ou email..."
+          value={username}
+          onChange={event => setUsername(event.currentTarget.value)}
+          leftIcon={<UserCredentialsIcon className={baseIconProperties} />}
+        />
 
-          <input
-            type="text"
-            className={`flex grow outline-none text-cinemind-white text-2xl font-cinemind-serif ${!username ? "italic" : ""}`}
-            placeholder="Nome de usuário ou email..."
-            value={username}
-            onChange={event => {
-              setUsername(event.currentTarget.value);
-            }}
-          />
-        </div>
-
-        <div className="flex p-4 gap-4 bg-cinemind-light rounded-lg place-items-center-safe">
-          <ClosedLockIcon className="size-12 fill-none stroke-cinemind-white stroke-1" />
-
-          <input
-            type={isPasswordVisible ? "text" : "password"}
-            className={`flex grow outline-none text-cinemind-white text-2xl font-cinemind-serif ${!password ? "italic" : ""}`}
-            placeholder="Senha..."
-            value={password}
-            onChange={event => {
-              setPassword(event.currentTarget.value);
-            }}
-          />
-
-          {isPasswordVisible ? (
-            <EyeIcon
-              className="size-12 fill-none stroke-cinemind-white stroke-1 cursor-pointer"
-              onClick={togglePasswordVisibility}
-            />
-          ) : (
-            <SlashedEyeIcon
-              className="size-12 fill-none stroke-cinemind-white stroke-1 cursor-pointer"
-              onClick={togglePasswordVisibility}
-            />
-          )}
-        </div>
+        <InputBox
+          type={isPasswordVisible ? "text" : "password"}
+          className="
+            flex p-4 gap-4 place-items-center-safe
+            bg-cinemind-light rounded-lg
+            text-cinemind-white text-2xl font-cinemind-serif
+          "
+          placeholder="Senha..."
+          value={password}
+          onChange={event => setPassword(event.currentTarget.value)}
+          leftIcon={<ClosedLockIcon className={baseIconProperties} />}
+          rightIcon={
+            isPasswordVisible ? (
+              <EyeIcon
+                className={`${baseIconProperties} cursor-pointer`}
+                onClick={togglePasswordVisibility}
+              />
+            ) : (
+              <SlashedEyeIcon
+                className={`${baseIconProperties} cursor-pointer`}
+                onClick={togglePasswordVisibility}
+              />
+            )
+          }
+        />
 
         <div className="grid grid-cols-3 grid-rows-2">
           <p
