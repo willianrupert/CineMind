@@ -18,8 +18,9 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        # Garante que o email também seja o username para consistência no login
-        validated_data['username'] = validated_data['email']
+        # --- ALTERAÇÃO AQUI ---
+        # A linha que forçava o username a ser igual ao email foi removida.
+        # validated_data['username'] = validated_data['email']
         user = User.objects.create_user(**validated_data)
         return user
 

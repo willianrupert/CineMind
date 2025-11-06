@@ -50,15 +50,19 @@ class LoginOnboardingView(views.APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
-        email = request.data.get('email')
+        # --- ALTERAÇÃO AQUI (1/3) ---
+        # Trocado 'email' por 'username'
+        username = request.data.get('username')
         password = request.data.get('password')
         
-        if not email or not password:
-            return Response({"error": "Email e senha são obrigatórios"}, status=status.HTTP_400_BAD_REQUEST)
+        # --- ALTERAÇÃO AQUI (2/3) ---
+        # Atualizada a validação e a mensagem de erro
+        if not username or not password:
+            return Response({"error": "Username e senha são obrigatórios"}, status=status.HTTP_400_BAD_REQUEST)
         
-        # Como o username agora é o email (definido no UserSerializer),
-        # podemos usar o 'username' do authenticate.
-        user = authenticate(request, username=email, password=password)
+        # --- ALTERAÇÃO AQUI (3/3) ---
+        # Trocado 'email' por 'username' na função 'authenticate'
+        user = authenticate(request, username=username, password=password)
         
         if user is None:
             return Response({"error": "Credenciais inválidas"}, status=status.HTTP_401_UNAUTHORIZED)
