@@ -10,12 +10,16 @@ import UserCredentialsIcon from "../assets/UserCredentialsIcon";
 import ClosedLockIcon from "../assets/ClosedLockIcon";
 import SlashedEyeIcon from "../assets/SlashedEyeIcon";
 import InputBox from "../components/InputBox";
+import api from "../services/api"; // importação do serviço de API (Axios)
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const [error, setError] = useState(""); // estado que controla mensagens de erro
+
+  // Estado de carregamento para UX
+  const [isLoading, setIsLoading] = useState(false);
 
   const togglePasswordVisibility = () =>
     setPasswordVisibility(!isPasswordVisible);
@@ -24,7 +28,7 @@ export default function Login() {
   const goToSignupPage = () => navigate("/signup");
 
   // Lógica de submissão
-  const submitLoginData = (event: React.FormEvent) => {
+  const submitLoginData = async (event: React.FormEvent) => {
     event.preventDefault(); // impede o recarregamento padrão do form
     setError(""); // reseta mensagens de erro a cada nova tentativa
 
@@ -33,15 +37,43 @@ export default function Login() {
     // Validamos o login (username OU email)
     const isLoginValid = isValidUsername(username) || isValidEmail(username);
 
-    // Checa resultado
-    if (isLoginValid && isPasswordValid) {
-      // Sucesso
-      console.log("Credenciais válidas. Pronto para enviar para o backend");
-      // TODO: aqui faremos a chamada da API (Axios)
-      navigate("/home");
-    } else {
-      // Falha na validação
+    // Se alguma das validações falhar, mostramos o erro e retornamos
+    if (!isLoginValid || !isPasswordValid) {
       setError("Usuário ou senha inválidos. Verifique as credenciais.");
+      return; // Para a execução
+    }
+
+    // Inicia a chamada da API
+    setIsLoading(true); // Desabilita o botão de login
+
+    try {
+      // Tenta fazer a requisição de login
+      // NOTA: Confirmar com o backend se o endpoint é o mesmo "/login"
+      const response = await api.post("/login", {
+        username: username,
+        password: password
+      });
+
+      // Sucesso
+      setIsLoading(false); // Reabilita o botão de login
+      console.log("API respondeu: ", response.data);
+
+      // TODO: Salvar o token que o backend enviar (ex: response.data.token)
+      // localStorage.setItem("token", response.data.token);
+
+      navigate("/home"); // Navega para home
+    } catch (apiError: any) {
+      // Falha na requisição
+      setIsLoading(false); // Reabilita o botão de login
+
+      if (apiError.response && apiError.response.status === 401) {
+        // Erro 401 (Não autorizado) - Usuário ou senha incorretos
+        setError("Credenciais incorretas. Tente novamente.");
+      } else {
+        // Outro erro (servidor offline, erro 500, etc)
+        setError("Erro ao conectar ao servidor. Tente novamente mais tarde.");
+      }
+      console.error("Erro no login: ", apiError);
     }
   };
 
@@ -122,8 +154,10 @@ export default function Login() {
               col-start-2 row-start-2
               bg-cinemind-yellow rounded-lg cursor-pointer 
               text-cinemind-dark text-3xl font-cinemind-sans font-semibold
+              disabled:bg-gray-500 disabled:cursor-not-allowed
             "
-            value="Entrar"
+            value={isLoading ? "Entrando..." : "Entrar"} // Muda o texto se estiver carregando
+            disabled={isLoading} // Desabilita o botão se estiver carregando
           />
         </div>
 
