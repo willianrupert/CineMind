@@ -16,7 +16,11 @@ export default function CineMind() {
       />
       <Route
         path="/login"
-        element={<Login data-testid="login-page" />}
+        element={
+          <div data-testid="login-page">
+            <Login />
+          </div>
+        }
       />
       <Route
         path="/signup"
