@@ -49,9 +49,8 @@ O usuário faz login pela primeira vez. A API retorna um token de acesso e avisa
 
 ```json
 {
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyNDczODE5LCJpYXQiOjE3NjI0NzAyMTksImp0aSI6IjljOWYxODdiNzRjZDRlOGVhOTUzZTk2NjA5ZGJjY2Q4IiwidXNlcl9pZCI6NH0.tXEfHxPh67V1lpe1suJqdrjjaO9qMOixlkZStcjdRE0",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyNTQ0Mzc0LCJpYXQiOjE3NjI1NDA3NzQsImp0aSI6ImE1ODg1M2RhNDNjZTRmYjc5ZTFkMDRhNmY5MmFmODRlIiwidXNlcl9pZCI6Nn0.z6jVmONC3RIsyOjDg6kHIiLVvbal92sDOmtO6UxaRRU",
   "onboarding_status": {
-    "needs_onboarding": true,
     "questions": [
       {
         "id": "3df8b7e1-2b6a-4bce-8f37-a89a6d008e79",
@@ -177,10 +176,8 @@ O usuário faz login novamente (talvez em outro dia). A API agora reconhece que 
 
 ```json
 {
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyNDc0OTExLCJpYXQiOjE3NjI0NzEzMTEsImp0aSI6ImIwNDA0MWQxMzgxYzQ0YmNiNjNiZDEzZTQ1OTBiZDY0IiwidXNlcl9pZCI6NX0.rsw2UWLSxmWoAs3lnkeLM67dCLzJP5Ulocm9XqYOJsA",
-  "onboarding_status": {
-    "needs_onboarding": false
-  }
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyNTQ0MTc0LCJpYXQiOjE3NjI1NDA1NzQsImp0aSI6IjU5ZTNhNWFjYmY3NzQ1OWY5ODcwZTk5ODFlN2I0MjFjIiwidXNlcl9pZCI6NX0.fpqeHLncPUVF5HQjSthbQV1qGppsZuVHibYtDbOwlQE",
+  "onboarding_status": null
 }
 ```
 
