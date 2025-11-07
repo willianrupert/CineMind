@@ -77,18 +77,19 @@ class LoginOnboardingView(views.APIView):
         has_answers = Answer.objects.filter(profile_id=profile.id).exists()
         has_genres = ProfileGenre.objects.filter(profile_id=profile.id).exists()
         
-        onboarding_status = {}
-        if has_answers and has_genres:
-            onboarding_status = {'needs_onboarding': False}
-        else:
+        # --- ESTA É A MUDANÇA QUE VOCÊ PEDIU ---
+        onboarding_status = None  # 1. Inicializa como None
+        
+        if not (has_answers and has_genres): # 2. Verifica se o onboarding NÃO foi feito
             # Se o onboarding não foi feito, busca os dados necessários
             questions = Question.objects.all()
             genres = Genre.objects.all()
+            # 3. Preenche o dicionário apenas com 'questions' e 'genres'
             onboarding_status = {
-                'needs_onboarding': True,
                 'questions': QuestionSerializer(questions, many=True).data,
                 'genres': GenreSerializer(genres, many=True).data,
             }
+        # --- FIM DA MUDANÇA ---
 
         return Response({
             'access_token': access_token,
