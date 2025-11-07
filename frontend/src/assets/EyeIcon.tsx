@@ -8,6 +8,7 @@ export default function EyeIcon({
   return (
     <SVGIcon
       className={className}
+      testID="eye-icon"
       viewBox={viewBox}
       onClick={onClick}
     >

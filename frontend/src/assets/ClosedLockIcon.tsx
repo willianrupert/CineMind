@@ -8,6 +8,7 @@ export default function ClosedLockIcon({
   return (
     <SVGIcon
       className={className}
+      testID="closed-lock-icon"
       viewBox={viewBox}
       onClick={onClick}
     >

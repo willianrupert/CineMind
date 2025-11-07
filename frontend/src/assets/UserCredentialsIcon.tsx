@@ -8,6 +8,7 @@ export default function UserCredentialsIcon({
   return (
     <SVGIcon
       className={className}
+      testID="user-credentials-icon"
       viewBox={viewBox}
       onClick={onClick}
     >

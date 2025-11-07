@@ -8,6 +8,7 @@ export default function SlashedEyeIcon({
   return (
     <SVGIcon
       className={className}
+      testID="slashed-eye-icon"
       viewBox={viewBox}
       onClick={onClick}
     >
