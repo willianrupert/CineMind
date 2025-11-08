@@ -144,6 +144,7 @@ export default function Login() {
               flex grow col-span-3 place-self-center-safe
               text-cinemind-dark text-lg font-cinemind-serif font-semibold
             "
+            data-testid="error-text"
           >
             {error}
           </p>
@@ -151,7 +152,7 @@ export default function Login() {
           <input
             type="submit"
             className="
-              col-start-2 row-start-2
+              col-start-2 row-start-2 px-4 py-1
               bg-cinemind-yellow rounded-lg cursor-pointer 
               text-cinemind-dark text-3xl font-cinemind-sans font-semibold
               disabled:bg-gray-500 disabled:cursor-not-allowed
@@ -176,6 +177,7 @@ export default function Login() {
               bg-cinemind-blue rounded-lg cursor-pointer px-4 py-1
               text-cinemind-dark text-xl font-cinemind-sans font-semibold
             "
+            type="button"
             onClick={goToSignupPage}
           >
             Cadastrar
