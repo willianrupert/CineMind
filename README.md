@@ -9,11 +9,11 @@ O curso requer que equipes formadas aleatoriamente desenvolvam um sistema integr
 
 | Nome                              | GitHub                                             |
 | --------------------------------- | -------------------------------------------------- |
-| Eduardo Henrique Buarque Almeida  |                                                    |
+| Eduardo Henrique Buarque Almeida  | [@ed-henri](https://github.com/ed-henri)           |
 | Felipe de Aquino Mulato           | [@FelipeMulato](https://github.com/FelipeMulato)   |
 | Iury Mikael Sobral dos Santos[^1] | [@LugiaKB](https://github.com/LugiaKB)             |
-| Jonas Manoel Barbosa de Lima      |                                                    |
-| João Victor Cardoso Lopes[^1]     |                                                    |
+| Jonas Manoel Barbosa de Lima      | [@jmbl2-svg](https://github.com/jmbl2-svg)         |
+| João Victor Cardoso Lopes[^1]     | [@jvlopess](https://github.com/jvlopess)           |
 | Luan Gustavo Nogueira de Souza    | [@lgns-cin](https://github.com/lgns-cin)           |
 | Matheus Braglia Cesar Vieira      | [@mbcv-dev](https://github.com/mbcv-dev)           |
 | Willian Neves Rupert Jones        | [@willianrupert](https://github.com/willianrupert) |
