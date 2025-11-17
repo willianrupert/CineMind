@@ -52,9 +52,9 @@ jobs:
       # F403 - Uso de imports genéricos (from ... import * )
       # F405 - Uso de nomes indefinidos devido a um import genérico
 
-      # - name: Linting
-      #   working-directory: ./backend
-      #   run: python -m ruff check --output-format github --ignore E402,F401,F403,F405
+      - name: Linting
+        working-directory: ./backend
+        run: python -m ruff check --output-format github --ignore E402,F401,F403,F405
 
       - name: Testing
         working-directory: ./backend

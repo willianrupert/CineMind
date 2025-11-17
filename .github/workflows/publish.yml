@@ -29,8 +29,8 @@ jobs:
       - name: Linting (front-end)
         run: docker exec cinemind-frontend npm run lint
 
-      # - name: Linting (back-end)
-      #   run: docker exec cinemind-backend python -m ruff check --output-format github --ignore E402,F401,F403,F405
+      - name: Linting (back-end)
+        run: docker exec cinemind-backend python -m ruff check --output-format github --ignore E402,F401,F403,F405
 
       - name: Testing (front-end)
         run: docker exec cinemind-frontend npm run test
