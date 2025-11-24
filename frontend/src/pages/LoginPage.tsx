@@ -46,35 +46,36 @@ export default function Login() {
     // Inicia a chamada da API
     setIsLoading(true); // Desabilita o botão de login
 
-    try {
-      // Tenta fazer a requisição de login
-      const response = await api.post("/api/login/", {
+    await api
+      .post("/api/login/", {
         username: username,
         password: password
+      })
+      .then(response => {
+        const data = response.data[0];
+
+        localStorage.setItem("cinemind/access_token", data.access_token);
+
+        if (!data.onboarding_status) {
+          navigate("/home"); // Navega para home
+        } else {
+          // TODO: salvar data.questions e data.genres para uso na página de questionário
+          navigate("/questionnaire");
+        }
+      })
+      .catch(apiError => {
+        if (apiError.response && apiError.response.status === 401) {
+          // Erro 401 (Não autorizado) - Usuário ou senha incorretos
+          setError("Credenciais incorretas. Tente novamente.");
+        } else {
+          // Outro erro (servidor offline, erro 500, etc)
+          setError("Erro ao conectar ao servidor. Tente novamente mais tarde.");
+        }
+        console.error("Erro no login: ", apiError);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-
-      const data = response.data[0];
-
-      localStorage.setItem("cinemind/access_token", data.access_token);
-
-      if (!data.onboarding_status) {
-        navigate("/home"); // Navega para home
-      } else {
-        // TODO: salvar data.questions e data.genres para uso na página de questionário
-        navigate("/questionnaire");
-      }
-    } catch (apiError: any) {
-      if (apiError.response && apiError.response.status === 401) {
-        // Erro 401 (Não autorizado) - Usuário ou senha incorretos
-        setError("Credenciais incorretas. Tente novamente.");
-      } else {
-        // Outro erro (servidor offline, erro 500, etc)
-        setError("Erro ao conectar ao servidor. Tente novamente mais tarde.");
-      }
-      console.error("Erro no login: ", apiError);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   const baseIconProperties = "size-12 fill-none stroke-cinemind-white stroke-1";
