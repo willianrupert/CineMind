@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import QuestionItem from "../components/QuestionItem";
 import GenreGrid from "../components/GenreGrid";
 import {
-  devLoginAndFetchData, // Usamos a nova função de login+fetch
   submitOnboardingForm,
   type Question,
   type Genre,
@@ -26,30 +25,38 @@ export default function QuestionnairePage() {
   const [phase, setPhase] = useState<"questions" | "genres">("questions");
 
   useEffect(() => {
-    const initData = async () => {
+    // Busca dados passados pelo Login via LocalStorage
+    const loadDataFromStorage = () => {
       try {
-        // --- CREDENCIAIS DE TESTE ---
-        // Certifique-se de que este usuário existe no seu banco local
-        // Você pode criá-lo via 'python src/manage.py createsuperuser' ou via registro da API
-        const USERNAME = "novo_usuario"; 
-        const PASSWORD = "uma_senha_forte_123";
+        const storedData = localStorage.getItem("onboarding_data");
+        
+        if (!storedData) {
+          // Se não houver dados, o usuário tentou acessar direto ou deu refresh sem persistência.
+          // Redireciona para login para pegar os dados novamente.
+          console.warn("Sem dados de onboarding. Redirecionando para login.");
+          navigate("/login"); 
+          return;
+        }
 
-        console.log("Tentando autenticar e buscar dados reais do backend...");
+        const parsedData = JSON.parse(storedData);
         
-        const data = await devLoginAndFetchData(USERNAME, PASSWORD);
-        
-        setQuestions(data.questions);
-        setGenres(data.genres);
-        
-      } catch (error: any) {
-        alert(`Erro ao carregar dados do Backend:\n${error.message || "Verifique se o backend está rodando e se o usuário existe."}`);
+        if (parsedData.questions && parsedData.genres) {
+          setQuestions(parsedData.questions);
+          setGenres(parsedData.genres);
+        } else {
+          throw new Error("Dados incompletos no storage.");
+        }
+      } catch (error) {
+        console.error("Erro ao ler dados locais:", error);
+        localStorage.removeItem("token"); // Força logout limpo
+        navigate("/login");
       } finally {
         setLoading(false);
       }
     };
 
-    initData();
-  }, []);
+    loadDataFromStorage();
+  }, [navigate]);
 
   const handleAnswerQuestion = (value: number) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -87,11 +94,14 @@ export default function QuestionnairePage() {
         genre_ids: selectedGenreIds,
       });
       
-      alert("Onboarding enviado com sucesso para o Backend!");
+      // Limpa os dados temporários, pois já finalizou
+      localStorage.removeItem("onboarding_data");
+      
+      // Redireciona para o perfil/home
       navigate("/profile"); 
     } catch (error) {
-      console.error("Erro ao enviar formulário:", error);
-      alert("Erro ao salvar no banco de dados.");
+      console.error("Erro ao enviar:", error);
+      alert("Erro ao salvar suas respostas. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -100,10 +110,7 @@ export default function QuestionnairePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-cinemind-dark flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-cinemind-white text-xl animate-pulse mb-2">Conectando ao Backend...</p>
-          <p className="text-cinemind-white/50 text-sm">Autenticando usuário de teste...</p>
-        </div>
+        <p className="text-cinemind-white/70 animate-pulse">Preparando questionário...</p>
       </div>
     );
   }
