@@ -171,10 +171,10 @@ export default function QuestionnairePage() {
             onClick={submitQuestionnaireData}
             disabled={selectedGenreIds.length === 0}
             className={`
-              mt-12 px-12 py-4 rounded-full text-xl font-bold transition-all transform
+              mt-12 px-12 py-4 rounded-full text-xl font-cinemind-sans font-bold transition-all transform
               ${
                 selectedGenreIds.length > 0
-                  ? "text-cinemind-dark hover:scale-105 shadow-lg shadow-cinemind-pink/20 cursor-pointer"
+                  ? "bg-cinemind-yellow text-cinemind-dark hover:scale-105 shadow-lg shadow-cinemind-pink/20 cursor-pointer"
                   : "bg-cinemind-light text-cinemind-white/30 cursor-not-allowed"
               }
             `}
