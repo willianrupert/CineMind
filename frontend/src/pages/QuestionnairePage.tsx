@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import QuestionItem from "../components/QuestionItem";
 import GenreGrid from "../components/GenreGrid";
 import {
-  submitOnboardingForm,
   type Question,
   type Genre,
   type AnswerSubmission

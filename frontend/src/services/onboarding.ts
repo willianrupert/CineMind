@@ -1,7 +1,3 @@
-import api from "./api";
-
-// --- Interfaces ---
-
 export interface Question {
   id: string;
   description: string;
@@ -28,11 +24,3 @@ export interface OnboardingPayload {
   answers: AnswerSubmission[];
   genre_ids: string[];
 }
-
-// --- Funções de API ---
-
-// Envia o formulário para o backend (Requer token no localStorage)
-export const submitOnboardingForm = async (payload: OnboardingPayload) => {
-  const response = await api.post("/api/form/", payload);
-  return response.data;
-};
