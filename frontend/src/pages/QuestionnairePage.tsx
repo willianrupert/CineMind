@@ -12,7 +12,6 @@ import api from "../services/api";
 
 export default function QuestionnairePage() {
   const navigate = useNavigate();
-  const goToLoginPage = () => navigate("/login");
   const goToHomePage = () => navigate("/home");
 
   // Estados de Dados
@@ -54,6 +53,7 @@ export default function QuestionnairePage() {
   };
 
   useEffect(() => {
+    const goToLoginPage = () => navigate("/login");
     const storedData = localStorage.getItem(StorageKeys.ONBOARDING_DATA);
 
     if (!storedData) {
@@ -94,7 +94,7 @@ export default function QuestionnairePage() {
         answers: answers,
         genre_ids: selectedGenreIds
       })
-      .then(response => {
+      .then(() => {
         localStorage.removeItem(StorageKeys.ONBOARDING_DATA);
         goToHomePage();
       })
