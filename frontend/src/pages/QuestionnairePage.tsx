@@ -118,10 +118,7 @@ export default function QuestionnairePage() {
   }
 
   return (
-    <div
-      className="min-h-screen bg-cinemind-dark flex flex-col items-center py-12 px-4"
-      data-testid="questionnaire-page"
-    >
+    <div className="min-h-screen bg-cinemind-dark flex flex-col items-center py-12 px-4">
       {phase === "questions" && questions.length > 0 && (
         <>
           <div className="w-full max-w-2xl mb-8">

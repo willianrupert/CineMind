@@ -40,9 +40,9 @@ export default function CineMind() {
       <Route
         path="/questionnaire"
         element={
-          // Agora renderizamos a página real mantendo o wrapper para consistência se necessário
-          // O ID data-testid="questionnaire-page" agora está DENTRO de QuestionnairePage.tsx
-          <QuestionnairePage />
+          <div data-testid="questionnaire-page">
+            <QuestionnairePage />
+          </div>
         }
       />
       <Route
