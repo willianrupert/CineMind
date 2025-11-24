@@ -1,7 +1,7 @@
 import pytest
 import uuid
 from django.contrib.auth.models import User
-from accounts.models import Question, Answer
+from accounts.models import Question
 from accounts.serializers import (
     UserSerializer, QuestionSerializer, AnswerSerializer,
     OnboardingFormSerializer, ProfileSerializer
@@ -56,8 +56,8 @@ class TestQuestionSerializer:
 @pytest.mark.django_db
 class TestAnswerSerializer:
     def test_valid_answer_serialization(self):
-        user = User.objects.create_user(username="ana", password="123")
-        profile = user.profile
+        # user = User.objects.create_user(username="ana", password="123")
+        # profile = user.profile
 
         q = Question.objects.create(
             description="Você gosta de festas?",
@@ -106,7 +106,7 @@ class TestOnboardingFormSerializer:
 class TestProfileSerializer:
     def test_serializes_user_with_history(self):
         user = User.objects.create_user(username="joao", password="123", email="joao@ex.com")
-        profile = user.profile
+        # profile = user.profile
         mood = Mood.objects.create(name="Feliz")
         rec_set = RecommendationSet.objects.create(user=user, is_active=True)
         item = RecommendationItem.objects.create(

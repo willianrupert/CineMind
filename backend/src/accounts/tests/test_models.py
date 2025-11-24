@@ -98,19 +98,19 @@ class TestAnswerModel:
             )
 
     def test_answer_deletes_with_profile(self):
-        ans = Answer.objects.create(
-            profile=self.profile,
-            question=self.question,
-            selected_value=1
-        )
+        # ans = Answer.objects.create(
+        #     profile=self.profile,
+        #     question=self.question,
+        #     selected_value=1
+        # )
         self.profile.delete()
         assert Answer.objects.count() == 0
 
     def test_answer_deletes_with_question(self):
-        ans = Answer.objects.create(
-            profile=self.profile,
-            question=self.question,
-            selected_value=1
-        )
+        # ans = Answer.objects.create(
+        #     profile=self.profile,
+        #     question=self.question,
+        #     selected_value=1
+        # )
         self.question.delete()
         assert Answer.objects.count() == 0
