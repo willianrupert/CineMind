@@ -52,14 +52,18 @@ export default function Login() {
         password: password
       })
       .then(response => {
-        const data = response.data[0];
+        const data = response.data;
+        console.log(data);
 
         localStorage.setItem("cinemind/access_token", data.access_token);
 
         if (!data.onboarding_status) {
           navigate("/home"); // Navega para home
         } else {
-          // TODO: salvar data.questions e data.genres para uso na página de questionário
+          localStorage.setItem(
+            "cinemind/onboarding_data",
+            JSON.stringify(data.onboarding_status)
+          );
           navigate("/questionnaire");
         }
       })
