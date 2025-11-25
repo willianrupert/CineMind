@@ -162,9 +162,10 @@ export default function Signup() {
         <div className="grid grid-cols-5 grid-rows-2">
           <p
             className="
-                flex grow col-span-3 place-self-center-safe
-                text-cinemind-dark text-lg font-cinemind-serif font-semibold
-              "
+              flex grow col-span-5 place-self-center-safe text-center
+              text-cinemind-dark text-lg font-cinemind-serif font-semibold
+            "
+            data-testid="error-text"
           >
             {error}
           </p>
