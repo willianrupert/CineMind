@@ -3,11 +3,12 @@ import SVGIcon, { type IconProps } from "./SVGIcon";
 export default function ClosedLockIcon({
   className = "",
   viewBox = "0 0 24 24",
-  onClick = _ => {}
+  onClick = () => {}
 }: IconProps) {
   return (
     <SVGIcon
       className={className}
+      testID="closed-lock-icon"
       viewBox={viewBox}
       onClick={onClick}
     >

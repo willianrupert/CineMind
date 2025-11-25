@@ -3,11 +3,12 @@ import SVGIcon, { type IconProps } from "./SVGIcon";
 export default function EyeIcon({
   className = "",
   viewBox = "0 0 24 24",
-  onClick = _ => {}
+  onClick = () => {}
 }: IconProps) {
   return (
     <SVGIcon
       className={className}
+      testID="eye-icon"
       viewBox={viewBox}
       onClick={onClick}
     >

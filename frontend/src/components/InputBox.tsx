@@ -11,6 +11,12 @@ interface InputBoxProps {
 /**
  * Caixa de input com ícones à esquerda e à direita.
  *
+ * IDs de teste internos:
+ * - `input-box` — Refere ao componente como um todo.
+ * - `left-icon` — Refere ao ícone à esquerda da caixa de entrada.
+ * - `input-element` — Refere ao elemento da caixa de entrada.
+ * - `right-icon` — Refere ao ícone à direita da caixa de entrada.
+ *
  * @param className As classes do componente.
  * @param leftIcon O ícone (elemento JSX) a ser renderizado à esquerda.
  * @param rightIcon O ícone (elemento JSX) a ser renderizado à direita.
@@ -29,18 +35,26 @@ export default function InputBox({
   onChange = () => {}
 }: InputBoxProps) {
   return (
-    <div className={className}>
-      {typeof leftIcon === "function" ? leftIcon() : leftIcon}
+    <div
+      className={className}
+      data-testid="input-box"
+    >
+      <div data-testid="left-icon">
+        {typeof leftIcon === "function" ? leftIcon() : leftIcon}
+      </div>
 
       <input
         type={type}
         className={`flex grow outline-none ${!value ? "italic" : ""}`}
+        data-testid="input-element"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
 
-      {typeof rightIcon === "function" ? rightIcon() : rightIcon}
+      <div data-testid="right-icon">
+        {typeof rightIcon === "function" ? rightIcon() : rightIcon}
+      </div>
     </div>
   );
 }

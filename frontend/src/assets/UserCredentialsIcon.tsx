@@ -3,11 +3,12 @@ import SVGIcon, { type IconProps } from "./SVGIcon";
 export default function UserCredentialsIcon({
   className = "",
   viewBox = "0 0 24 24",
-  onClick = _ => {}
+  onClick = () => {}
 }: IconProps) {
   return (
     <SVGIcon
       className={className}
+      testID="user-credentials-icon"
       viewBox={viewBox}
       onClick={onClick}
     >
