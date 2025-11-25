@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/LoginPage";
 import Signup from "./pages/SignupPage";
 import Questionnaire from "./pages/QuestionnairePage";
+import Home from "./pages/HomePage";
 
 /**
  * O componente base renderizado na tela do site.
@@ -49,7 +50,11 @@ export default function CineMind() {
       />
       <Route
         path="/home"
-        element={<div data-testid="home-page" />}
+        element={
+          <div data-testid="home-page">
+            <Home />
+          </div>
+        }
       />
       <Route
         path="/profile"
