@@ -1,3 +1,5 @@
+// frontend/src/pages/HomePage.tsx
+
 import { useEffect, useState } from "react";
 import BrainIcon from "../assets/BrainIcon";
 import NavBar, { DEFAULT_NAVBAR_ICONS } from "../components/Navbar";
@@ -6,13 +8,18 @@ import { StorageKeys } from "../utils/constants";
 import api from "../services/api";
 import type { Mood, Recommendation } from "../services/data";
 import CircularMoodMenu from "../components/CircularMoodMenu";
+import LoadingPopup from "../components/LoadingPopup";
+import RecommendationPopup from "../components/RecommendationPopup";
 
 export default function Home() {
   const [moods, setMoods] = useState<Mood[]>([]);
+  const [recommendations, setRecommendations] = useState<Recommendation[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    const goToLoginPage = () => navigate("/login"); // redefinido para evitar chaining de chamadas dependentes
+    const goToLoginPage = () => navigate("/login");
     const accessToken = localStorage.getItem(StorageKeys.ACCESS_TOKEN);
 
     if (!accessToken) {
@@ -21,26 +28,33 @@ export default function Home() {
       return;
     }
 
+    // Carrega os Moods ao iniciar a página
     const fetchMoodsFromAPI = async () => {
-      await api
-        .get("/api/moods/")
-        .then(response => {
-          console.log(response.data);
-          setMoods(response.data);
-        })
-        .catch(error => {
-          console.error("Erro no fetch: ", error);
-        });
+      try {
+        const response = await api.get("/api/moods/");
+        setMoods(response.data);
+      } catch (error) {
+        console.error("Erro no fetch de moods: ", error);
+      }
     };
 
     fetchMoodsFromAPI();
   }, [navigate]);
 
-  const fetchRecommendations = async (id: string) => {
-    await api.post("/api/recommendations/", { mood_id: id }).then(response => {
-      const recommendations: Recommendation[] = response.data;
-      console.log(recommendations);
-    });
+  const handleMoodClick = async (id: string) => {
+    setIsLoading(true); // Abre o popup de carregamento
+    setRecommendations(null); // Limpa recomendações anteriores
+
+    try {
+      const response = await api.post("/api/recommendations/", { mood_id: id });
+      // Assim que a API responde, guardamos os dados e paramos o loading
+      setRecommendations(response.data);
+      setIsLoading(false); 
+    } catch (error) {
+      console.error("Erro ao buscar recomendações:", error);
+      setIsLoading(false);
+      alert("Ocorreu um erro ao consultar o oráculo de filmes. Tente novamente.");
+    }
   };
 
   return (
@@ -52,6 +66,17 @@ export default function Home() {
         place-content-center-safe place-items-center-safe
       "
     >
+      {/* Componente de Carregamento (aparece enquanto isLoading é true) */}
+      {isLoading && <LoadingPopup />}
+
+      {/* Componente de Recomendação (aparece quando temos dados e não estamos carregando) */}
+      {!isLoading && recommendations && (
+        <RecommendationPopup 
+          recommendations={recommendations} 
+          onClose={() => setRecommendations(null)} 
+        />
+      )}
+
       <div
         className="
           place-content-center-safe place-items-center-safe
@@ -74,13 +99,13 @@ export default function Home() {
               w-4/10 h-4/10 left-3/10 top-3/10 absolute 
               bg-cinemind-pink rounded-full 
               fill-cinemind-white cursor-pointer
-              z-10
+              z-10 hover:scale-105 transition-transform duration-300 shadow-lg shadow-cinemind-pink/50
             "
             viewBox="-32 -32 576 576"
           />
         }
         moods={moods}
-        onMoodClick={(_, mood: Mood) => fetchRecommendations(mood.id)}
+        onMoodClick={(_, mood: Mood) => handleMoodClick(mood.id)}
       />
 
       <NavBar
