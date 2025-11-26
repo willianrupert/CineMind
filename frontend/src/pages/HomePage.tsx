@@ -1,10 +1,10 @@
+import { useState } from "react";
 import BrainIcon from "../assets/BrainIcon";
-import HomeIcon from "../assets/HomeIcon";
-import LogoutIcon from "../assets/LogoutIcon";
-import ProfileIcon from "../assets/ProfileIcon";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
-  const condition = true;
+  const [areMoodsVisible, setMoodsVisibility] = useState(false);
+  const toggleMoodsVisibility = () => setMoodsVisibility(!areMoodsVisible);
 
   const x = [
     "Alegria",
@@ -27,10 +27,12 @@ export default function Home() {
         className="
           flex grow place-content-center-safe place-items-center-safe
           row-start-1 row-span-1 col-start-2 w-full h-full
-          font-cinemind-serif text-cinemind-white italic
+          font-cinemind-serif text-cinemind-white text-xl italic text-center
         "
       >
-        CineMind
+        Que emoção deseja sentir hoje?
+        <br />
+        Clique no ícone abaixo para ver suas opções.
       </div>
 
       <div
@@ -44,10 +46,11 @@ export default function Home() {
             className="
               w-4/10 h-4/10 left-3/10 top-3/10 absolute 
               bg-cinemind-pink rounded-full 
-              fill-cinemind-white
+              fill-cinemind-white cursor-pointer
               z-10
             "
             viewBox="-32 -32 576 576"
+            onClick={toggleMoodsVisibility}
           />
           {x.map((value, index) => {
             return (
@@ -63,9 +66,9 @@ export default function Home() {
                 <p
                   className={`
                     w-full h-full flex place-items-center place-content-center
-                    bg-cinemind-blue rounded-full
+                    bg-cinemind-blue rounded-full cursor-pointer
                     text-cinemind-white font-cinemind-sans text-lg
-                    ${condition && "animate-moveout"}
+                    ${areMoodsVisible && "animate-moveout"}
                   `}
                   style={{
                     rotate: `${-(360 / x.length) * index}deg`
@@ -79,35 +82,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div
-        className="
-          flex bottom-4 gap-8 p-2 rounded-full overflow-visible relative
-          row-start-10 row-span-1 col-start-2
-          bg-cinemind-light
-        "
-      >
-        <LogoutIcon
-          className="
-            size-12 rounded-full fill-none stroke-cinemind-white stroke-1 
-            bg-cinemind-dark outline-2 outline-cinemind-light
-          "
-          viewBox="-4 -4 32 32"
-        />
-        <HomeIcon
-          className="
-            size-12 rounded-full fill-none stroke-cinemind-white stroke-1 
-            bg-cinemind-dark outline-2 outline-cinemind-light scale-200 
-          "
-          viewBox="-4 -4 32 32"
-        />
-        <ProfileIcon
-          className="
-            size-12 rounded-full fill-none stroke-cinemind-white stroke-1 
-            bg-cinemind-dark
-          "
-          viewBox="-4 -4 32 32"
-        />
-      </div>
+      <Navbar selectedIcon={1} />
     </div>
   );
 }
