@@ -1,3 +1,5 @@
+// frontend/src/components/Navbar.tsx
+
 import type { JSX } from "react";
 import { useNavigate } from "react-router-dom";
 import { StorageKeys } from "../utils/constants";
@@ -11,34 +13,46 @@ interface NavBarProps {
   selectedIcon: number;
 }
 
+/**
+ * Define os ícones e ações padrão da barra de navegação.
+ * Ordem dos ícones:
+ * 0: Logout
+ * 1: Home
+ * 2: Profile
+ */
 export const DEFAULT_NAVBAR_ICONS = () => {
   const navigate = useNavigate();
+  
   const goToLoginPage = () => navigate("/login");
   const goToHomePage = () => navigate("/home");
   const goToProfilePage = () => navigate("/profile");
+  
   const logout = () => {
     localStorage.removeItem(StorageKeys.ACCESS_TOKEN);
     goToLoginPage();
   };
 
   const iconProperties =
-    "size-12 rounded-full fill-none stroke-cinemind-white stroke-1 bg-cinemind-dark outline-2 outline-cinemind-light";
+    "size-12 rounded-full fill-none stroke-cinemind-white stroke-1 bg-cinemind-dark outline-2 outline-cinemind-light transition-all duration-300 hover:shadow-lg hover:shadow-cinemind-blue/20";
   const iconViewBox = "-4 -4 32 32";
 
   return [
     <LogoutIcon
+      key="logout"
       className={iconProperties}
       viewBox={iconViewBox}
       onClick={logout}
     />,
 
     <HomeIcon
+      key="home"
       className={iconProperties}
       viewBox={iconViewBox}
       onClick={goToHomePage}
     />,
 
     <ProfileIcon
+      key="profile"
       className={iconProperties}
       viewBox={iconViewBox}
       onClick={goToProfilePage}
@@ -48,8 +62,8 @@ export const DEFAULT_NAVBAR_ICONS = () => {
 
 export default function NavBar({
   className = "",
-  icons = () => [],
-  selectedIcon = 0
+  icons = DEFAULT_NAVBAR_ICONS,
+  selectedIcon = 1
 }: NavBarProps) {
   return (
     <div className={className}>
@@ -57,7 +71,10 @@ export default function NavBar({
         return (
           <div
             key={index}
-            className={selectedIcon == index ? "scale-200" : "cursor-pointer"}
+            // Aplica escala maior se for o ícone selecionado
+            className={`transition-transform duration-300 ${
+              selectedIcon === index ? "scale-125" : "cursor-pointer hover:scale-110"
+            }`}
           >
             {icon}
           </div>
