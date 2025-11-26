@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import BrainIcon from "../assets/BrainIcon";
-import Navbar from "../components/Navbar";
+import NavBar, { DEFAULT_NAVBAR_ICONS } from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { StorageKeys } from "../utils/constants";
 import api from "../services/api";
@@ -28,7 +28,7 @@ export default function Home() {
 
   const navigate = useNavigate();
   useEffect(() => {
-    const goToLoginPage = () => navigate("/login");
+    const goToLoginPage = () => navigate("/login"); // redefinido para evitar chaining de chamadas dependentes
     const accessToken = localStorage.getItem(StorageKeys.ACCESS_TOKEN);
 
     if (!accessToken) {
@@ -129,7 +129,15 @@ export default function Home() {
         </div>
       </div>
 
-      <Navbar selectedIcon={1} />
+      <NavBar
+        className="
+          flex bottom-4 gap-8 p-2 rounded-full overflow-visible relative
+          row-start-10 row-span-1 col-start-2
+          bg-cinemind-light
+        "
+        selectedIcon={1}
+        icons={DEFAULT_NAVBAR_ICONS}
+      />
     </div>
   );
 }
