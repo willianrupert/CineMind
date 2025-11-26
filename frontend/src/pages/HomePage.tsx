@@ -4,27 +4,11 @@ import NavBar, { DEFAULT_NAVBAR_ICONS } from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { StorageKeys } from "../utils/constants";
 import api from "../services/api";
+import type { Mood, Recommendation } from "../services/data";
+import CircularMoodMenu from "../components/CircularMoodMenu";
 
 export default function Home() {
-  interface Mood {
-    id: string;
-    name: string;
-  }
-
-  interface Recommendation {
-    id: string;
-    title: string;
-    rank: number;
-    thumbnail_url: null;
-    mood: Mood;
-    synopsis: string;
-    movie_metadata: string;
-  }
-
   const [moods, setMoods] = useState<Mood[]>([]);
-
-  const [areMoodsVisible, setMoodsVisibility] = useState(false);
-  const toggleMoodsVisibility = () => setMoodsVisibility(!areMoodsVisible);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -79,13 +63,12 @@ export default function Home() {
         <p>Clique no ícone abaixo para ver suas opções.</p>
       </div>
 
-      <div
+      <CircularMoodMenu
         className="
           flex grow place-content-center-safe place-items-center-safe
           row-start-2 row-span-8 col-start-1 col-span-3 w-full h-full
         "
-      >
-        <div className="size-160 relative">
+        centerIcon={
           <BrainIcon
             className="
               w-4/10 h-4/10 left-3/10 top-3/10 absolute 
@@ -94,39 +77,11 @@ export default function Home() {
               z-10
             "
             viewBox="-32 -32 576 576"
-            onClick={toggleMoodsVisibility}
           />
-          {moods.map((mood, index) => {
-            return (
-              <button
-                className="
-                  w-1/5 h-1/5 left-2/5 top-2/5 absolute
-                  align-middle text-center z-0
-                "
-                style={{
-                  rotate: `${(360 / moods.length) * index}deg`
-                }}
-                key={index}
-                onClick={() => fetchRecommendations(mood.id)}
-              >
-                <p
-                  className={`
-                    w-full h-full flex place-items-center place-content-center
-                    bg-cinemind-blue rounded-full cursor-pointer
-                    text-cinemind-white font-cinemind-sans text-lg
-                    ${areMoodsVisible && "animate-moveout"}
-                  `}
-                  style={{
-                    rotate: `${-(360 / moods.length) * index}deg`
-                  }}
-                >
-                  {mood.name}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+        }
+        moods={moods}
+        onMoodClick={(_, mood: Mood) => fetchRecommendations(mood.id)}
+      />
 
       <NavBar
         className="
