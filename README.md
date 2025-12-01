@@ -1,65 +1,118 @@
-# CineMind
+<div align="center">
 
-O repositório unificado para todos os serviços relacionados ao software **CineMind**.
+  <h1>CineMind</h1>
+  
+  <p>
+    <strong>Cinema encontra Psicologia.</strong><br>
+    Descubra filmes que entendem quem você é.
+  </p>
 
-Este projeto foi criado para e desenvolvido ao longo da cadeira de **Desenvolvimento de Software** _(CIN0136)_.
-O curso requer que equipes formadas aleatoriamente desenvolvam um sistema integrado com APIs de IA generativa.
+  <p>
+    <a href="#funcionalidades">
+      <img src="https://img.shields.io/badge/Funcionalidades-Explorar-000000?style=for-the-badge&logo=apple" alt="Funcionalidades">
+    </a>
+    <a href="#equipe">
+      <img src="https://img.shields.io/badge/Equipe-CineMind-blue?style=for-the-badge" alt="Equipe">
+    </a>
+    <a href="frontend/README.md">
+      <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="Frontend">
+    </a>
+    <a href="backend/README.md">
+      <img src="https://img.shields.io/badge/Backend-Django-092E20?style=for-the-badge&logo=django" alt="Backend">
+    </a>
+  </p>
 
-### Integrantes da Equipe
+  <br />
 
-| Nome                              | GitHub                                             |
-| --------------------------------- | -------------------------------------------------- |
-| Eduardo Henrique Buarque Almeida  |                                                    |
-| Felipe de Aquino Mulato           | [@FelipeMulato](https://github.com/FelipeMulato)   |
-| Iury Mikael Sobral dos Santos[^1] | [@LugiaKB](https://github.com/LugiaKB)             |
-| Jonas Manoel Barbosa de Lima      |                                                    |
-| João Victor Cardoso Lopes[^1]     |                                                    |
-| Luan Gustavo Nogueira de Souza    | [@lgns-cin](https://github.com/lgns-cin)           |
-| Matheus Braglia Cesar Vieira      | [@mbcv-dev](https://github.com/mbcv-dev)           |
-| Willian Neves Rupert Jones        | [@willianrupert](https://github.com/willianrupert) |
+  <img src="image_072aa4.jpg" alt="CineMind Dashboard" width="100%" style="border-radius: 10px; box-shadow: 0px 10px 20px rgba(0,0,0,0.5);">
 
-[^1]: Iury Mikael foi removido da equipe durante um evento de _Job Rotation_ promovido pelos professores, e João Victor entrou em seu lugar.<sup>[[voltar]](#integrantes-da-equipe)</sup>
+  <br /><br />
 
-## Sumário
+</div>
 
-1. [Visão Geral](#visão-geral)
-2. [Funcionalidades Técnicas](#funcionalidades-técnicas)
-3. [Como Contribuir](#como-contribuir)
+---
 
-## Visão Geral
+## 🧠 A Essência
 
-O **CineMind** é um sistema de recomendação de filmes personalizado que utiliza o modelo de personalidade [_Big Five_](<https://pt.wikipedia.org/wiki/Cinco_grandes_(psicologia)>) para sugerir filmes que se alinhem com os traços de personalidade e preferências de gênero do usuário.
+> "Não é apenas sobre o que você assiste. É sobre como você se sente."
 
-A plataforma oferece um questionário para avaliar o perfil do usuário e, com base nisso, gera recomendações de filmes categorizadas por humor.
+O **CineMind** redefine a recomendação de filmes. Esqueça os algoritmos genéricos. Nós combinamos o modelo psicológico **Big Five** com o poder da **Google Gemini AI** para alinhar sugestões cinematográficas com a sua personalidade e o seu humor atual.
 
-## Funcionalidades Técnicas
+<div align="center">
+  <img src="image_072a85.png" alt="Mapa Mental de Emoções" width="70%">
+</div>
 
-- **Autenticação de Usuário**
+---
 
-  - Sistema completo de registro e login com tokens JWT.
+## ✨ Funcionalidades
 
-- **Questionário de Personalidade**
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🎯 Traçados com Precisão</h3>
+      <p>Nosso onboarding utiliza um questionário psicológico baseado no <em>Big Five</em> para criar uma impressão digital da sua personalidade.</p>
+    </td>
+    <td width="50%" valign="top">
+       <img src="image_072a10.png" alt="Quiz de Personalidade" style="border-radius: 8px;">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="image_0729ee.png" alt="Seleção de Gêneros" style="border-radius: 8px;">
+    </td>
+    <td width="50%" valign="top">
+      <h3>🎨 Calibragem de Gosto</h3>
+      <p>Cruze seus dados psicológicos com seus gêneros favoritos. Do terror ao documentário, a IA adapta a sugestão ao seu gosto refinado.</p>
+    </td>
+  </tr>
+</table>
 
-  - Um questionário baseado no modelo [_Big Five_](<https://pt.wikipedia.org/wiki/Cinco_grandes_(psicologia)>) para avaliar a personalidade do usuário.
+### O Ecossistema
 
-- **Recomendações com IA**
+* **Autenticação JWT Segura:** Seus dados e seu perfil, protegidos.
+* **Recomendações via Gemini AI:** Inteligência Generativa que entende nuances de enredo e emoção.
+* **Mood-Based Sorting:** Filmes categorizados por *Alegria*, *Tristeza*, *Tensão*, *Curiosidade* e *Relaxamento*.
+* **API Autodocumentada:** Swagger UI e ReDoc integrados via `drf-spectacular`.
 
-  - Utiliza a API Gemini do Google para gerar recomendações de filmes personalizadas e inteligentes.
+---
 
-- **Categorização por Humor**
+## 👥 O Time (Cast & Crew)
 
-  - As recomendações são agrupadas em cinco categorias de humor: _Alegria_, _Tristeza_, _Tensão_, _Curiosidade_ e _Relaxamento_.
+<div align="center">
 
-- **Preferências de Gênero**
+Desenvolvido durante a cadeira de **Desenvolvimento de Software** (CIN0136).
 
-  - Os usuários podem selecionar seus gêneros de filmes favoritos para refinar ainda mais as recomendações.
+| Membro | GitHub | Papel Principal |
+| :--- | :---: | :--- |
+| **Eduardo Henrique** | [@ed-henri](https://github.com/ed-henri) | Fullstack Dev |
+| **Felipe Mulato** | [@FelipeMulato](https://github.com/FelipeMulato) | AI Integration |
+| **Jonas Manoel** | [@jmbl2-svg](https://github.com/jmbl2-svg) | Backend Arch |
+| **João Victor Lopes*** | [@jvlopess](https://github.com/jvlopess) | Frontend Lead |
+| **Luan Gustavo** | [@lgns-cin](https://github.com/lgns-cin) | UI/UX Design |
+| **Matheus Braglia** | [@mbcv-dev](https://github.com/mbcv-dev) | QA & Testing |
+| **Willian Rupert** | [@willianrupert](https://github.com/willianrupert) | DevOps |
+| *Iury Mikael*** | [@LugiaKB](https://github.com/LugiaKB) | *Legacy Contributor* |
 
-- **Documentação da API**
+<small>* João Victor assumiu a posição de Iury Mikael após o evento de Job Rotation.</small>
 
-  - A API é autodocumentada usando [_drf-spectacular_](https://drf-spectacular.readthedocs.io/en/latest), com [_Swagger UI_](https://swagger.io/tools/swagger-ui/) e [_ReDoc_](https://redocly.com).
+</div>
 
-Verifique os arquivos `README.md` dentro de cada pasta em `services` para mais detalhes sobre estruturas e tecnologias usadas.
+---
 
-## Como Contribuir
+## 🚀 Começando
 
-Por favor, leia o nosso [`CONTRIBUTING.md`](CONTRIBUTING.md) para mais informações acerca do processo de instalação e execução, e nosso protocolo de colaboração.
+Para rodar o CineMind localmente, consulte nossas documentações dedicadas:
+
+<div align="center">
+
+[![Frontend](https://img.shields.io/badge/Documentação-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=black)](frontend/README.md)
+&nbsp;&nbsp;&nbsp;&nbsp;
+[![Backend](https://img.shields.io/badge/Documentação-Backend-092E20?style=for-the-badge&logo=django)](backend/README.md)
+
+</div>
+
+<br>
+
+<div align="center">
+  <sub>CineMind © 2025. Construído com ❤️ no CIn-UFPE.</sub>
+</div>
