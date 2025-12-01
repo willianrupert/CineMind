@@ -24,7 +24,7 @@
 
   <br />
 
-  <img src="image_072aa4.jpg" alt="CineMind Dashboard" width="100%" style="border-radius: 10px; box-shadow: 0px 10px 20px rgba(0,0,0,0.5);">
+  <img src="perfil.png" alt="CineMind Dashboard" width="100%" style="border-radius: 10px; box-shadow: 0px 10px 20px rgba(0,0,0,0.5);">
 
   <br /><br />
 
@@ -39,7 +39,7 @@
 O **CineMind** redefine a recomendação de filmes. Esqueça os algoritmos genéricos. Nós combinamos o modelo psicológico **Big Five** com o poder da **Google Gemini AI** para alinhar sugestões cinematográficas com a sua personalidade e o seu humor atual.
 
 <div align="center">
-  <img src="image_072a85.png" alt="Mapa Mental de Emoções" width="70%">
+  <img src="home.jpeg" alt="Mapa Mental de Emoções" width="70%">
 </div>
 
 ---
@@ -53,12 +53,12 @@ O **CineMind** redefine a recomendação de filmes. Esqueça os algoritmos gené
       <p>Nosso onboarding utiliza um questionário psicológico baseado no <em>Big Five</em> para criar uma impressão digital da sua personalidade.</p>
     </td>
     <td width="50%" valign="top">
-       <img src="image_072a10.png" alt="Quiz de Personalidade" style="border-radius: 8px;">
+       <img src="forms.jpeg" alt="Quiz de Personalidade" style="border-radius: 8px;">
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <img src="image_0729ee.png" alt="Seleção de Gêneros" style="border-radius: 8px;">
+      <img src="gêneros.jpeg" alt="Seleção de Gêneros" style="border-radius: 8px;">
     </td>
     <td width="50%" valign="top">
       <h3>🎨 Calibragem de Gosto</h3>
