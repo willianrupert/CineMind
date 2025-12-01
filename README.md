@@ -24,7 +24,7 @@
 
   <br />
 
-  <img src="perfil.png" alt="CineMind Dashboard" width="100%" style="border-radius: 10px; box-shadow: 0px 10px 20px rgba(0,0,0,0.5);">
+  <img src="perfil.jpeg" alt="CineMind Dashboard" width="100%" style="border-radius: 10px; box-shadow: 0px 10px 20px rgba(0,0,0,0.5);">
 
   <br /><br />
 
@@ -58,7 +58,7 @@ O **CineMind** redefine a recomendação de filmes. Esqueça os algoritmos gené
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <img src="gêneros.jpeg" alt="Seleção de Gêneros" style="border-radius: 8px;">
+      <img src="generos.jpeg" alt="Seleção de Gêneros" style="border-radius: 8px;">
     </td>
     <td width="50%" valign="top">
       <h3>🎨 Calibragem de Gosto</h3>
